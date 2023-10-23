@@ -26,7 +26,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
   }).addTo(mymap);
 
   // Iniciar la actualización de la ubicación cada 5 segundos
-  // setInterval(actualizarUbicacion, 5000);
+  setInterval(actualizarUbicacion, 5000);
 });
 
 function actualizarUbicacion() {
