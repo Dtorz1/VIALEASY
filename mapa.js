@@ -22,11 +22,11 @@ navigator.geolocation.getCurrentPosition(function (position) {
     color: "blue",
     fillColor: "blue",
     fillOpacity: 0.3,
-    radius: 60,
+    radius: 50,
   }).addTo(mymap);
 
   // Iniciar la actualización de la ubicación cada 5 segundos
-  setInterval(actualizarUbicacion, 5000);
+  setInterval(actualizarUbicacion, 3000);
 });
 
 function actualizarUbicacion() {
