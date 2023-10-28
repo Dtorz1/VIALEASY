@@ -22,7 +22,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     color: "blue",
     fillColor: "blue",
     fillOpacity: 0.3,
-    radius: 100,
+    radius: 60,
   }).addTo(mymap);
 
   // Iniciar la actualización de la ubicación cada 5 segundos
@@ -34,6 +34,28 @@ function actualizarUbicacion() {
     var lat = position.coords.latitude;
     var lon = position.coords.longitude;
     mymap.setView([lat, lon], mymap.getZoom());
+
+    // Calcular la distancia entre tu ubicación y los marcadores
+    var marcadores = [
+      coordenadasDaño,
+      coordenadasPolicia,
+      coordenadasAccidente,
+    ];
+    for (var i = 0; i < marcadores.length; i++) {
+      if (marcadores[i]) {
+        var distancia = calcularDistancia(
+          lat,
+          lon,
+          marcadores[i].latitud,
+          marcadores[i].longitud
+        );
+        if (distancia < 10) {
+          // Generar una alerta sonora si la distancia es menor a 10 metros
+          var audio = new Audio("1.mp3"); // Reemplaza 'alerta.mp3' con el archivo de sonido que desees utilizar
+          audio.play();
+        }
+      }
+    }
   });
 }
 
@@ -169,3 +191,18 @@ function mostrarAlertaEnMapa(lat, lon) {
   alert("Coordenadas ingresadas: Latitud " + lat + ", Longitud " + lon);
 }
 // -------------------------------------
+function calcularDistancia(lat1, lon1, lat2, lon2) {
+  var radlat1 = (Math.PI * lat1) / 180;
+  var radlat2 = (Math.PI * lat2) / 180;
+  var theta = lon1 - lon2;
+  var radtheta = (Math.PI * theta) / 180;
+  var dist =
+    Math.sin(radlat1) * Math.sin(radlat2) +
+    Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist);
+  dist = (dist * 180) / Math.PI;
+  dist = dist * 60 * 1.1515; // Distancia en millas
+  dist = dist * 1.609344; // Distancia en kilómetros
+  dist = dist * 1000; // Distancia en metros
+  return dist;
+}
