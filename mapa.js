@@ -190,6 +190,12 @@ function mostrarAlertaEnMapa(lat, lon) {
   // Mostrar una alerta con las coordenadas en el mapa
   alert("Coordenadas ingresadas: Latitud " + lat + ", Longitud " + lon);
 }
+
+function volverAInicio() {
+  // Redirigir al usuario a la página de inicio
+  window.location.href = "index.html";
+}
+
 // -------------------------------------
 function calcularDistancia(lat1, lon1, lat2, lon2) {
   var radlat1 = (Math.PI * lat1) / 180;

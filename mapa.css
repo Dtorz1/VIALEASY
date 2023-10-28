@@ -81,6 +81,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+
   margin: auto;
   width: 60%;
   border: 3px solid #c2e393;
@@ -96,4 +97,26 @@ h3 {
 .btn-primary:active {
   background-color: var(--azul-oscuro-activo);
   transform: scale(1);
+}
+
+.centrar-volver {
+  background-color: #007bff;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 24px;
+  font-size: 20px;
+  transition: transform 0.2s, background-color 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 30%;
+  border: 3px solid #c2e393;
+  padding: 10px;
+  color: #f8f9fa;
+}
+
+.centrar-volver:hover {
+  background-color: var(--azul-oscuro-hover);
+  transform: scale(1.05);
 }
